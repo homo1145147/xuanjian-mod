@@ -62,9 +62,11 @@ java {
 	// Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
 	// if it is present.
 	// If you remove this line, sources will not be generated.
-	withSourcesJar()
-	sourceCompatibility = JavaVersion.VERSION_25
-	targetCompatibility = JavaVersion.VERSION_25
+	toolchain {
+		//change log: 将原本的 sourceCompatibility / targetCompatibility写法更改为工具链写法以确保
+		//gradle使用正确的JDK版本
+		languageVersion = JavaLanguageVersion.of(25)
+	}
 }
 
 jar {
